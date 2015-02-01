@@ -333,6 +333,7 @@
 (evil-leader/set-key "v" 'previous-buffer)
 (evil-leader/set-key "DEL" 'keyboard-quit)
 (evil-leader/set-key "c" 'evilnc-comment-or-uncomment-lines)
+(evil-leader/set-key "fs" (lambda () (interactive) (insert (concat "date: " (shell-command-to-string "date --rfc-3339=seconds | cut -c1-19")))))
 
 ;; window management for professionals
 (global-set-key (kbd "<C-tab>") 'other-window)

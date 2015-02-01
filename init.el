@@ -105,12 +105,25 @@
 
 (defvar color-theme-is-global)
 (setq color-theme-is-global t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("49e5a7955b853f70d1fe751b2f896921398b273aa62f47bda961a45f80219581" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
 					;(load-theme 'hc-zenburn)
 					;(load-theme 'manoj-dark)
 					;(load-theme 'wombat)
 					;(color-theme-molokai)
 ;; (color-theme-monokai)
-(load-theme 'tangotango)
+(load-theme 'tangotango t)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
@@ -130,7 +143,6 @@
 (global-set-key (kbd "C-x C-l") 'eval-buffer)
 (global-set-key (kbd "C-h C-f") 'find-function)
 
-(global-set-key (kbd "<C-tab>") 'other-window)
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 (global-set-key (kbd "C-x C-o") 'list-packages)
 
@@ -196,7 +208,7 @@
 (global-set-key (kbd "C-x C-g") 'recentf-open-files)
 					;(global-set-key "\C-xf" 'recentf-open-files)
 
-(golden-ratio-mode 1)
+(golden-ratio-mode 0)
 (defvar golden-ratio-inhibit-functions)
 (defun pl/helm-alive-p ()
   "Deactive golden ratio when helm is in use iirc."
@@ -321,6 +333,17 @@
 (evil-leader/set-key "v" 'previous-buffer)
 (evil-leader/set-key "DEL" 'keyboard-quit)
 (evil-leader/set-key "c" 'evilnc-comment-or-uncomment-lines)
+
+;; window management for professionals
+(global-set-key (kbd "<C-tab>") 'other-window)
+(global-unset-key (kbd "M-j"))
+(global-unset-key (kbd "M-k"))
+(global-set-key (kbd "M-j") (lambda () (interactive) (other-window 1)))
+(global-set-key (kbd "M-k") (lambda () (interactive) (other-window -1)))
+(evil-leader/set-key "-" 'minimize-window)
+(evil-leader/set-key "=" 'maximize-window)
+(evil-leader/set-key "SPC" 'balance-windows)
+
 (evil-leader/set-key "sv"
   (lambda () (interactive)
     (progn
@@ -331,7 +354,7 @@
     (progn
       (save-buffer)
       (kill-buffer))))
-
+ 
 (defun toggle-window-split ()
   "If two frames are present, toggle horizontal and vertical splitting of them."
   (interactive)
@@ -358,7 +381,7 @@
           (select-window first-win)
           (if this-win-2nd (other-window 1))))))
 
-(evil-leader/set-key "SPC" 'toggle-window-split)
+(evil-leader/set-key "RET" 'toggle-window-split)
 
 (evil-mode 1)
 
@@ -405,15 +428,3 @@
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("49e5a7955b853f70d1fe751b2f896921398b273aa62f47bda961a45f80219581" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

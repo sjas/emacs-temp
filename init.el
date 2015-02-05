@@ -110,6 +110,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(custom-safe-themes (quote ("49e5a7955b853f70d1fe751b2f896921398b273aa62f47bda961a45f80219581" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -326,6 +327,8 @@
 (evil-leader/set-key "ff" 'find-file)
 (defvar my-filename)
 (evil-leader/set-key "fj" (lambda (arg) (interactive (list (read-file-name "Enter name of file to be created: "))) (progn (with-temp-buffer (write-file arg)) (find-file-other-window arg))))
+(evil-leader/set-key "ee" (lambda () (interactive) (find-file-other-window "~/.emacs.d/init.el")))
+(evil-leader/set-key "esa" (lambda () (interactive) (find-file-other-window "~/.dotfiles/aliases/aliases")))
 
 (evil-leader/set-key "1" 'delete-other-windows)
 (evil-leader/set-key "2" 'split-window-below)

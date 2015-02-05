@@ -100,8 +100,8 @@
     (package-install package)))
 (require 'package)
 
-;(custom-set-variables
-; '(initial-frame-alist (quote ((fullscreen . maximized)))))
+					;(custom-set-variables
+					; '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
 (defvar color-theme-is-global)
 (setq color-theme-is-global t)
@@ -138,7 +138,7 @@
 (electric-pair-mode) ;; insert closing parens at once
 (eldoc-mode)
 (column-number-mode 1) ;; show column
-;(global-prettify-symbols-mode 1) ;; lambda as shown as symbol
+(global-prettify-symbols-mode 1) ;; lambda as shown as symbol
 
 (global-set-key (kbd "C-x C-l") 'eval-buffer)
 (global-set-key (kbd "C-h C-f") 'find-function)
@@ -291,19 +291,19 @@
         (forward-line (read-number "Goto line: ")))
     (linum-mode -1)))
 
-					;(defadvice save-buffer (around save-buffer-as-root-around activate)
-					;  "Use sudo to save the current buffer."
-					;  (interactive "p")
-					;  (if (and (buffer-file-name) (not (file-writable-p (buffer-file-name))))
-					;      (let ((buffer-file-name (format "/sudo::%s" buffer-file-name)))
-					;	ad-do-it)
-					;    ad-do-it))
+(defadvice save-buffer (around save-buffer-as-root-around activate)
+  "Use sudo to save the current buffer."
+  (interactive "p")
+  (if (and (buffer-file-name) (not (file-writable-p (buffer-file-name))))
+      (let ((buffer-file-name (format "/sudo::%s" buffer-file-name)))
+	ad-do-it)
+    ad-do-it))
 
-(defadvice find-file (after find-file-sudo activate)
-  "Find file as root if necessary."
-  (unless (and buffer-file-name
-               (file-writable-p buffer-file-name))
-    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+;; (defadvice find-file (after find-file-sudo activate)
+;;   "Find file as root if necessary."
+;;   (unless (and buffer-file-name
+;;                (file-writable-p buffer-file-name))
+;;     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
 (defun my-lisp-hook ()
   "Helper function so elisp has proper modes loaded."
@@ -324,6 +324,9 @@
 (evil-leader/set-key "rq" 'volatile-kill-buffer)
 (evil-leader/set-key "fe" 'recentf-open-files)
 (evil-leader/set-key "ff" 'find-file)
+(defvar my-filename)
+(evil-leader/set-key "fj" (lambda (arg) (interactive (list (read-file-name "Enter name of file to be created: "))) (progn (with-temp-buffer (write-file arg)) (find-file-other-window arg))))
+
 (evil-leader/set-key "1" 'delete-other-windows)
 (evil-leader/set-key "2" 'split-window-below)
 (evil-leader/set-key "3" 'split-window-right)
@@ -355,7 +358,7 @@
     (progn
       (save-buffer)
       (kill-buffer))))
- 
+
 (defun toggle-window-split ()
   "If two frames are present, toggle horizontal and vertical splitting of them."
   (interactive)

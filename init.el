@@ -1,7 +1,16 @@
+;;;
 ;;; init.el --- sjas .emacs initialization file
 
 ;;; Commentary:
-;;; no info yet.
+;;; Now all makes sense.
+
+;;; TODO
+;;;  * check vim search&replace syntax to work properly (evil-mode)
+;;;  * fix the autocomplete plugin mess (AC, company, whatever)
+;;;  * check where the delay for AC is set
+;;;  * rebind 'mark here' and make AC work with C-SPC
+;;;  * fix flycheck-next/prev to start search at beginning when reaching end
+
 ;;; 1/2015
 
 ;;; Code:
@@ -323,8 +332,8 @@
 (evil-leader/set-key "fw" 'save-buffer)
 (evil-leader/set-key "fq" 'kill-buffer)
 (evil-leader/set-key "rq" 'volatile-kill-buffer)
-(evil-leader/set-key "fe" 'recentf-open-files)
-(evil-leader/set-key "ff" 'find-file)
+(evil-leader/set-key "ff" 'recentf-open-files)
+(evil-leader/set-key "fe" 'find-file)
 (defvar my-filename)
 (evil-leader/set-key "fj" (lambda (arg) (interactive (list (read-file-name "Enter name of file to be created: "))) (progn (with-temp-buffer (write-file arg)) (find-file-other-window arg))))
 (evil-leader/set-key "ee" (lambda () (interactive) (find-file-other-window "~/.emacs.d/init.el")))
@@ -429,9 +438,11 @@
 (define-key flycheck-mode-map flycheck-keymap-prefix (kbd "C-c f"))
 (define-key flycheck-mode-map flycheck-keymap-prefix flycheck-command-map)
 
-(evil-leader/set-key "j" 'flycheck-next-error)
-(evil-leader/set-key "k" 'flycheck-previous-error)
+(evil-leader/set-key "j" (lambda () (interactive) (flycheck-next-error t)))
+(evil-leader/set-key "k" (lambda () (interactive) (flycheck-previous-error)))
 (evil-leader/set-key "l" 'flycheck-list-errors)
 
 (provide 'init)
 ;;; init.el ends here
+
+;;;   

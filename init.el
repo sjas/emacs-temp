@@ -27,7 +27,6 @@
 (defvar package-list)
 (setq package-list
       '(
-	2048-game
 	color-theme
 	cc-mode
 	org
@@ -119,8 +118,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("49e5a7955b853f70d1fe751b2f896921398b273aa62f47bda961a45f80219581" default)))
  '(initial-frame-alist (quote ((fullscreen . maximized))))
- '(custom-safe-themes (quote ("49e5a7955b853f70d1fe751b2f896921398b273aa62f47bda961a45f80219581" default))))
+ '(package-selected-packages
+   (quote
+    (zenburn-theme vimrc-mode vi-tilde-fringe use-package tangotango-theme spray sos solarized-theme rfringe rainbow-mode rainbow-identifiers rainbow-delimiters quickrun python-mode puppet-mode ps-ccrypt prodigy private powerline-evil parscope markdown-toc markdown-mode+ magit key-chord helm-projectile helm-git helm-dirset helm-descbinds helm-dash hc-zenburn-theme grandshell-theme golden-ratio fringe-current-line free-keys flyparens flymake-shell flymake-puppet flymake-cursor flylisp flycheck-tip flycheck-pyflakes flycheck-pos-tip flycheck-package flycheck-irony flycheck-clojure evil-paredit evil-numbers evil-nerd-commenter evil-matchit evil-leader evil-jumper evil-indent-textobject eshell-fringe-status elisp-slime-nav company color-theme-wombat color-theme-monokai color-theme-molokai bash-completion ascii ac-helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

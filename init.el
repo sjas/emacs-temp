@@ -38,6 +38,7 @@
 	evil-numbers
 	evil-paredit
 	evil-jumper
+	slime
 	golden-ratio
 	helm
 	helm-dash
@@ -111,6 +112,10 @@
 					;(custom-set-variables
 					; '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
+(defvar inferior-lisp-program)
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(setq slime-contribs '(slime-fancy))
+
 (defvar color-theme-is-global)
 (setq color-theme-is-global t)
 (custom-set-variables
@@ -152,7 +157,7 @@
 (electric-pair-mode) ;; insert closing parens at once
 (eldoc-mode)
 (column-number-mode 1) ;; show column
-(global-prettify-symbols-mode 1) ;; lambda as shown as symbol
+;;(global-prettify-symbols-mode 1) ;; lambda as shown as symbol
 
 (global-set-key (kbd "C-x C-l") 'eval-buffer)
 (global-set-key (kbd "C-h C-f") 'find-function)

@@ -1,8 +1,7 @@
-;;;
 ;;; init.el --- sjas .emacs initialization file
 
 ;;; Commentary:
-;;; Now all makes sense.
+;;; Now all makes sense?!
 
 ;;; TODO
 ;;;  * check vim search&replace syntax to work properly (evil-mode)
@@ -38,7 +37,6 @@
 	evil-numbers
 	evil-paredit
 	evil-jumper
-	slime
 	golden-ratio
 	helm
 	helm-dash
@@ -71,7 +69,6 @@
 	prodigy
 	puppet-mode
 	quickrun
-	elisp-slime-nav
 	ac-helm
 	ascii
 	bash-completion
@@ -100,7 +97,9 @@
 	flymake-puppet
 	python-mode
 	tangotango-theme
+	elisp-slime-nav
 	))
+	;;slime
 
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -114,7 +113,15 @@
 
 (defvar inferior-lisp-program)
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
-(setq slime-contribs '(slime-fancy))
+;;(setq slime-contribs '(slime-fancy))
+;;(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
+;;(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
+;;(defun cliki:start-slime ()
+;;  (unless (slime-connected-p)
+;;    (save-excursion (slime))))
+;;(add-hook 'slime-mode-hook 'cliki:start-slime)
+;;(slime-setup '(slime-repl))
+
 
 (defvar color-theme-is-global)
 (setq color-theme-is-global t)

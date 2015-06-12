@@ -98,8 +98,11 @@
 	python-mode
 	tangotango-theme
 	elisp-slime-nav
+	slime
+	slime-repl
+	slime-fuzzy
+	slime-company
 	))
-	;;slime
 
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -113,14 +116,14 @@
 
 (defvar inferior-lisp-program)
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
-;;(setq slime-contribs '(slime-fancy))
-;;(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
-;;(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
-;;(defun cliki:start-slime ()
-;;  (unless (slime-connected-p)
-;;    (save-excursion (slime))))
-;;(add-hook 'slime-mode-hook 'cliki:start-slime)
-;;(slime-setup '(slime-repl))
+(setq slime-contribs '(slime-fancy))
+(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
+(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
+(defun cliki:start-slime ()
+  (unless (slime-connected-p)
+    (save-excursion (slime))))
+(add-hook 'slime-mode-hook 'cliki:start-slime)
+;; (slime-setup '(slime-repl))
 
 
 (defvar color-theme-is-global)
